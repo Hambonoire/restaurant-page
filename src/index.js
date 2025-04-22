@@ -1,5 +1,5 @@
 import "./styles.css";
-import { greeting, loadPage } from "./script.js";
+import { greeting, pageContent } from "./script.js";
 // import { script.js } from ""
 
 // import hamburgerImage from "images/eiliv-aceron-pu6b4yIlQF4-unsplash.jpg";
@@ -10,5 +10,5 @@ import { greeting, loadPage } from "./script.js";
 // document.body.appendChild(image);
 
 
-alert(greeting);
-console.log(greeting);
+// alert(greeting);
+alert(pageContent());
