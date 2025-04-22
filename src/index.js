@@ -10,5 +10,5 @@ import { greeting, pageContent } from "./script.js";
 // document.body.appendChild(image);
 
 
-// alert(greeting);
+alert(greeting);
 alert(pageContent());

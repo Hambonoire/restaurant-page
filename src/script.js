@@ -10,7 +10,7 @@ function pageContent() {
     for (let i = 0; i < navBtns.length; i++) {
         navBtns[i].className = `navBtn${i+1}`;
     }
-    navBtns[0].textContent = "Home";
+    navBtns[0].textContent = "foo";
     // navBtnx[0].setAttribute("style", "background-color: transparent; border-radius: 0.5em; font-style: italic;");
     navBtns[1].textContent = "Menu";
     // navBtnx[1].setAttribute("style", "background-color: transparent; border-radius: 0.5em; font-style: italic;");
