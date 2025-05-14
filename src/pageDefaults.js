@@ -10,6 +10,7 @@ export const pageDefaults = () => {
 
     document.body.setAttribute("style", `display: flex; 
         display-direction: column; height: 100vh;
+        justify-content: center; align-itmes: center;
         overflow-x: hidden;`);
 
     const body = document.querySelector("body");
@@ -20,8 +21,8 @@ export const pageDefaults = () => {
     console.log(backgroundImage);
     backgroundImage.setAttribute("id", "bg-image");
     backgroundImage.setAttribute("style", `display: inherit; 
-        flex-direction: inherit; height: 100%; 
-        background-image: url(${hambergerImage}); 
+        flex-direction: inherit; height: inherit; justify-content: inherit;
+        align-items: inherit; background-image: url(${hambergerImage}); 
         backdrop-filter: brightness(50%); background-size: cover; 
         background-position: center; background-repeat: no-repeat;`
     );
