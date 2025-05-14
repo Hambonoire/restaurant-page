@@ -17,11 +17,9 @@ export const pageDefaults = () => {
     const header = document.getElementById('#header');
 
     const backgroundImage = document.createElement("div");
-
-    console.log(backgroundImage);
     backgroundImage.setAttribute("id", "bg-image");
     backgroundImage.setAttribute("style", `display: inherit; 
-        flex-direction: inherit; height: inherit; justify-content: inherit;
+        flex-direction: inherit; height: 100%; justify-content: inherit;
         align-items: inherit; background-image: url(${hambergerImage}); 
         backdrop-filter: brightness(50%); background-size: cover; 
         background-position: center; background-repeat: no-repeat;`
