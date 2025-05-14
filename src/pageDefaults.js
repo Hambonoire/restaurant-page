@@ -8,13 +8,15 @@ export const pageDefaults = () => {
     }
     `);
 
-    document.body.setAttribute("style", `display: flex; 
-        display-direction: column; height: 100vh;
-        justify-content: center; align-itmes: center;
-        overflow-x: hidden;`);
-
     const body = document.querySelector("body");
+    body.setAttribute("style", `height: 100vh; overflow-x: hidden;`);
+
     const header = document.getElementById('#header');
+
+    const contentContainer = document.querySelector("#content");
+    contentContainer.setAttribute("style", `display: flex; flex-direction: 
+        column; justify-content: space-between; align-items:center; gap: 20px; 
+        padding-top: 150px;`);
 
     const backgroundImage = document.createElement("div");
     backgroundImage.setAttribute("id", "bg-image");
