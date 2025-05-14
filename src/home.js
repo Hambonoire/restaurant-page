@@ -1,34 +1,18 @@
 //HTML elements
-const elsHTML = () => {
-
-    const body = document.querySelector("body");
-    const contentContainer = document.querySelector("#content");
-
-    return {body, nav, contentContainer};
-}
-
-const nodesDOM = () => {
+const contentNodes = () => {
 
     const textContainer = document.createElement("div");
     const smallText = document.createElement("p");
     const largeText = document.createElement("p");
     const button = document.createElement("button");
 
-    return {style, logo, textContainer, smallText, largeText, button};
+    return {textContainer, smallText, largeText, button};
 }
 
 
 export const home = () => {
-
-    pageDefaults();
-    header();
-
-    const nodes = nodesDOM();
-    const els = elsHTML();
-
-    els.contentContainer.setAttribute("style", `display: flex; flex-direction: 
-        column; justify-content: space-between; align-items:center; gap: 20px; 
-        height: 100vh; padding-top: 150px;`);
+    
+    const nodes = contentNodes();
         
     nodes.textContainer.setAttribute("style", `display: inherit; flex-direction: 
         inherit; justify-content: center; align-items: center; margin: 0; 
