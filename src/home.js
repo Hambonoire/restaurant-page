@@ -1,8 +1,3 @@
-import homeImage from "./images/hamberger.jpg";
-import { pageDefaults } from "./pageDefaults.js";
-import { header } from "./header.js";
-import { getPageToLoad } from "./index.js";
-
 //HTML elements
 const elsHTML = () => {
 
@@ -22,20 +17,14 @@ const nodesDOM = () => {
     return {style, logo, textContainer, smallText, largeText, button};
 }
 
+
 export const home = () => {
 
-    window.location.reload();
     pageDefaults();
     header();
 
     const nodes = nodesDOM();
     const els = elsHTML();
-
-    els.body.setAttribute("style", `display: flex; flex-direction: column;; 
-        height: 100vh; overflow-x: hidden; background-image: url(${homeImage}); 
-        backdrop-filter: brightness(50%); 
-        background-size: cover; background-position: center; 
-        background-repeat: no-repeat;)`);
 
     els.contentContainer.setAttribute("style", `display: flex; flex-direction: 
         column; justify-content: space-between; align-items:center; gap: 20px; 
@@ -70,7 +59,9 @@ export const home = () => {
     els.contentContainer.appendChild(nodes.textContainer);
 };
 
-getPageToLoad = [0, home];
+
+
+
 
 
 
