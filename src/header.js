@@ -1,48 +1,53 @@
-const headerEls = () => {
+class NavBar {
+    constructor(buttonLabels, logoText) {
+        this.navContainer = document.createElement("nav");
+        this.navContainer.classList.add("navBar");
+        this.navContainer.setAttribute("style", `
+        width: 100vw; height: 70px;
+        display: flex; justify-content: space-between; align-items: center; 
+        padding: 15px 30px; box-sizing: border-box;
+        margin: 0; position: relative; z-index: 2; border-bottom: 2px solid white;
+        `);
+        this.buttonLabels = buttonLabels;  
+        this.logoText = logoText;
+    }
 
-    const headerContainer = document.querySelector("#header");
-    headerContainer.setAttribute("style", `display: flex; 
-        justify-content: space-between; 
-        align-items: center; padding: 20px 40px; height: 10%`);
+    render() {
 
-    const nav = document.querySelector("nav");
-    nav.setAttribute("id", "nav");
-    nav.setAttribute("style", `display: flex; align-items: center; 
-        padding: 0 20px; gap: 10px`);
+        this.navContainer.innerHTML = "";
 
-    const navBtns = nav.children;
+        this.createLogo();
+        this.createButtons();
 
-    for (let i = 0; i < navBtns.length; i++) {
-        navBtns[i].setAttribute("style", `background-color: transparent; 
-            border: none; padding: 0; font-family: inherit; 
-            font-weight: bold; font-style: italic; 
-            font-size: 1.5rem; color: white; padding: 10px;`);
-        navBtns[i].className = `navBtn${i+1}`;
-        if (i === 0) {
-            navBtns[i].textContent = "Home";
-        } else if (i === 1) {
-            navBtns[i].textContent = "Menu";
-        } else if (i === 2) {
-            navBtns[i].textContent = "About";
+        // Ensure navbar is consistently added to the DOM
+        if (!document.body.contains(this.navContainer)) {
+            document.body.prepend(this.navContainer);
         }
     }
-    return {headerContainer, nav};
-};
 
-const headerLogo = () => {
+    createLogo() {
+        const logo = document.createElement("div");
+        logo.classList.add("navbar-logo");
+        logo.textContent = this.logoText;
+        logo.setAttribute("style", `
+            color: white; font-size: 2rem; font-style: italic;
+            margin-right: auto; cursor: pointer;
+        `);
+        this.navContainer.appendChild(logo);
+    }
 
-    const logo = document.createElement("h1");
-    logo.setAttribute("id", "logo");
-    logo.textContent = "Le Hambonoire";
-    logo.setAttribute("style", `display: flex; justify-content: center; 
-        align-items: center; font-style: italic; color: white; 
-        font-size: 2.5rem; padding: 10px 20px; margin: 0; text-wrap: nowrap;`);
+    createButtons() {
+        this.buttonLabels.forEach(label => {
+            const button = document.createElement("button");
+            button.textContent = label;
+            button.classList.add("navbar-button");
+            button.setAttribute("style", `
+                padding: 10px 0; margin: 0 0 0 20px; border: none; cursor: pointer;
+                background-color: transparent; color: white; font-size: 1rem;
+            `);
+            this.navContainer.appendChild(button);
+        });
+    }
+}
 
-    return {logo};
-};
-
-export const header = () => {
-
-    headerEls().headerContainer.insertBefore(headerLogo().logo, headerEls().nav);
-};
- 
+export default NavBar;

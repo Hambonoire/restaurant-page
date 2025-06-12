@@ -1,51 +1,45 @@
-//HTML elements
-const contentNodes = () => {
+class HomePage {
 
-    const textContainer = document.createElement("div");
-    const smallText = document.createElement("p");
-    const largeText = document.createElement("p");
-    const button = document.createElement("button");
+    constructor(navbar, contentContainer, toggleBackground, toggleOverlay) {
+        this.navbar = navbar;
+        this.contentContainer = contentContainer;
+        this.toggleBackground = toggleBackground;
+        this.toggleOverlay = toggleOverlay;
+    }
 
-    return {textContainer, smallText, largeText, button};
+    render() {
+        console.log("HomePage.render() initiated");
+
+        this.contentContainer.innerHTML = ""; // Clear previous content before rendering
+        this.contentContainer.style.marginTop = "200px";
+
+        this.toggleBackground(false);
+        this.toggleOverlay(true);
+
+        const heading = document.createElement("h1");
+        heading.textContent = "Welcome to le Hambonoire!";
+        heading.setAttribute("style", `
+            color: white; font-size: 2.5rem; font-weight: bold; text-align: center; margin: 0; 
+        `);
+
+        const description = document.createElement("p");
+        description.textContent = "Experience the bliss of our classic pub-style eats with a french twist!";
+        description.setAttribute("style", `
+            font-size: 1.5rem; color: white; text-align: center; margin: 0;
+        `);
+
+        this.contentContainer.appendChild(heading);
+        this.contentContainer.appendChild(description);
+
+        // Ensure content is added to the document
+        if (!document.body.contains(this.contentContainer)) {
+            document.body.appendChild(this.contentContainer);
+        }
+    }
+
+    getElement() {
+        return this.contentContainer; // Expose the main content container
+    }
 }
 
-
-export const home = () => {
-    
-    const nodes = contentNodes();
-        
-    nodes.textContainer.setAttribute("style", `display: inherit; flex-direction: 
-        inherit; justify-content: center; align-items: center; margin: 0; 
-        gap: 15px; padding: 15px;`);
-
-    nodes.smallText.className = "text-small";
-    nodes.smallText.textContent = "Expeerienz!";
-    nodes.smallText.setAttribute("style", `color: white; font-style: italic; font-size: 1.5em;
-        letter-spacing: 0.2em; text-align: center; margin: 0;`);
-        
-    nodes.largeText.className = "text-large";
-    nodes.largeText.textContent = `Ze graiteest ambairgairs
-        in ze ol weld!`;
-    nodes.largeText.setAttribute("style", `white-space: pre; color: white; font-style: italic;
-        font-size: 2.5em; font-weight: bold; letter-spacing: 0.1em; text-align: center;
-        text-wrap: wrap; margin: 0;`);
-        
-    nodes.button.className = "content-btn";
-    nodes.button.textContent = "Búk ze tébel";
-    nodes.button.setAttribute("style", `border: none; background-color: olive; color: white;
-        font-family: inherit; font-style: italic; font-size: 1.5em; 
-        padding: 10px 20px;`);
-
-    nodes.textContainer.appendChild(nodes.smallText);
-    nodes.textContainer.appendChild(nodes.largeText);
-    nodes.textContainer.appendChild(nodes.button);
-
-    els.contentContainer.appendChild(nodes.textContainer);
-};
-
-
-
-
-
-
-
+export default HomePage;

@@ -1,53 +1,75 @@
-import menuImage from "./images/menu.jpg"
-import { pageDefaults } from "./pageDefaults.js";
-import { header } from "./header.js";
-import { getPageToLoad } from "./index.js";
+class MenuPage {
 
-export const menu = () => {
+    constructor(navbar, contentContainer, toggleBackground, toggleOverlay) {
+        this.navbar = navbar;
+        this.contentContainer = contentContainer;
+        this.toggleBackground = toggleBackground;
+        this.toggleOverlay = toggleOverlay;
+    }
 
-    window.location.reload();
-    pageDefaults();
-    header();
+    render() {
 
-    const nodes = nodesDOM();
-    const els = elsHTML();
+        // Clear previous content before rendering
+        this.contentContainer.innerHTML = "";
+        this.contentContainer.style.marginTop = "100px";
 
-    els.body.setAttribute("style", `display: flex; flex-direction: column;; 
-        height: 100vh; overflow-x: hidden; background-image: url(${menuImage}); 
-        backdrop-filter: brightness(50%); 
-        background-size: cover; background-position: center; 
-        background-repeat: no-repeat;)`);
+        this.toggleBackground(true);
+        this.toggleOverlay(false);
 
-    els.contentContainer.setAttribute("style", `display: flex; flex-direction: 
-        column; justify-content: space-between; align-items:center; gap: 20px; 
-        height: 100vh; padding-top: 150px;`);
-        
-    nodes.textContainer.setAttribute("style", `display: inherit; flex-direction: 
-        inherit; justify-content: center; align-items: center; margin: 0; 
-        gap: 15px; padding: 15px;`);
+        this.navbar.navContainer.style.borderBottom = "2px solid #7B5E4B";
+        this.navbar.navContainer.querySelectorAll("navbar-button, .navbar-logo").forEach(el => {
+            el.style.color = "#7B5E4B";
+        })
 
-    nodes.smallText.className = "text-small";
-    nodes.smallText.textContent = "Expeerienz!";
-    nodes.smallText.setAttribute("style", `color: white; font-style: italic; font-size: 1.5em;
-        letter-spacing: 0.2em; text-align: center; margin: 0;`);
-        
-    nodes.largeText.className = "text-large";
-    nodes.largeText.textContent = `Ze graiteest ambairgairs
-        in ze ol weld!`;
-    nodes.largeText.setAttribute("style", `white-space: pre; color: white; font-style: italic;
-        font-size: 2.5em; font-weight: bold; letter-spacing: 0.1em; text-align: center;
-        text-wrap: wrap; margin: 0;`);
-        
-    nodes.button.className = "content-btn";
-    nodes.button.textContent = "Búk ze tébel";
-    nodes.button.setAttribute("style", `border: none; background-color: olive; color: white;
-        font-family: inherit; font-style: italic; font-size: 1.5em; 
-        padding: 10px 20px;`);
+        const heading = document.createElement("h1");
+        heading.textContent = "Our Menu";
+        heading.style.color = "#5C4033";
+        heading.style.textAlign = "center";
 
-    nodes.textContainer.appendChild(nodes.smallText);
-    nodes.textContainer.appendChild(nodes.largeText);
-    nodes.textContainer.appendChild(nodes.button);
+        const menuItems = [
+            { name: "Brie Burger", ingredients: ["1/4lb. Beef patty", "Brie", "Pickles", "Aioli sauce", "Brioche bun"] },
+            { name: "Ailes de Provence", ingredients: ["Deep-fried chicken wings", "Choice of dressing", "Fried tempura asparagus"] },
+            { name: "Fries Béarnaise", ingredients: ["Fried potato wedges", "Gruyère cheese", "Shredded roast beef", "Scallions", "Caramelized onions", "Creamy Béarnaise sauce"] },
+            { name: "Travers de porc", ingredients: ["Marinated pork ribs", "Rouille sauce", "Coleslaw", "Gougères"] }
+        ];
 
-    els.contentContainer.appendChild(nodes.textContainer);
-    console.log("getPageToLoad: ", getPageToLoad);
-};
+        const menuList = document.createElement("ul");
+        menuList.style.listStyle = "none";
+        menuList.style.textAlign = "center";
+        menuList.style.paddingLeft = "0";
+        menuList.style.width = "100%";
+        menuList.style.marginTop = "0";
+        menuList.style.marginBottom = "50px";
+
+
+        menuItems.forEach(item => {
+
+            const menuItemContainer = document.createElement("li");
+            menuItemContainer.style.display = "flex";
+            menuItemContainer.style.flexDirection = "column";
+            menuItemContainer.style.alignItems = "center";
+            menuItemContainer.style.marginBottom = "10px";
+
+            const itemName = document.createElement("h2");
+            itemName.textContent = item.name;
+            itemName.style.color = "#5C4033";
+            itemName.style.textAlign = "center";
+            itemName.style.marginBottom = "5px";
+
+            const itemIngredients = document.createElement("p");
+            itemIngredients.textContent = item.ingredients.join(", ");
+            itemIngredients.style.color = "#5C4033";
+            itemIngredients.style.textAlign = "center";
+            itemIngredients.style.fontSize = "1rem";
+            itemIngredients.style.maxWidth = "500px";
+
+            menuItemContainer.appendChild(itemName);
+            menuItemContainer.appendChild(itemIngredients);
+            menuList.appendChild(menuItemContainer);
+        });
+
+        this.contentContainer.appendChild(heading);
+        this.contentContainer.appendChild(menuList);
+    }
+}
+export default MenuPage;
